@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
-	before_action :baria_user, only: [:update, :delete]
 
   def show
-	  @book = Book.find(params[:id])
+	  @post_book = Book.find(params[:id])
+	  @book = Book.new
 	  @user = current_user
   end
 
@@ -12,7 +12,8 @@ class BooksController < ApplicationController
   end
 
   def create
-  	@book = Book.new(book_params) #Bookモデルのテーブルを使用しているのでbookコントローラで保存する。
+	  @book = Book.new(book_params) #Bookモデルのテーブルを使用しているのでbookコントローラで保存する。
+	  @book.user_id = current_user.id
   	if @book.save #入力されたデータをdbに保存する。
   		redirect_to @book, notice: "successfully created book!"#保存された場合の移動先を指定。
   	else
@@ -22,7 +23,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-  	@book = Book.find(params[:id])
+	  @book = Book.find(params[:id])
+	  if @book.user_id == current_user.id
+	  else
+		redirect_to books_path
+	  end
   end
 
 
@@ -45,14 +50,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-  	params.require(:book).permit(:title)
+  	params.require(:book).permit(:title, :body)
   end
-
-    #url直接防止　メソッドを自己定義してbefore_actionで発動。
-	def baria_book
-		unless params[:user_id].to_i == current_user.id
-			redirect_to books_path
-		end
-	 end
 
 end
