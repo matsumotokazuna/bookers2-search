@@ -163,7 +163,7 @@ describe 'ユーザーのテスト' do
       it '投稿一覧のtitleのリンク先が正しい' do
         expect(page).to have_link book.title, href: book_path(book)
       end
-      it '投稿一覧にopinionが表示される' do
+      it '投稿一覧にbodyが表示される' do
         expect(page).to have_content(book.body)
       end
     end

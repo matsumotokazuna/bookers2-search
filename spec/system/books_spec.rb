@@ -19,7 +19,7 @@ describe '投稿のテスト' do
 		  it 'titleフォームが表示される' do
 		  	expect(page).to have_field 'book[title]'
 		  end
-		  it 'opinionフォームが表示される' do
+		  it 'bodyフォームが表示される' do
 		  	expect(page).to have_field 'book[body]'
 		  end
 		  it 'Create Bookボタンが表示される' do
@@ -62,7 +62,7 @@ describe '投稿のテスト' do
 			it 'title編集フォームが表示される' do
 				expect(page).to have_field 'book[title]', with: book.title
 			end
-			it 'opinion編集フォームが表示される' do
+			it 'body編集フォームが表示される' do
 				expect(page).to have_field 'book[body]', with: book.body
 			end
 			it 'Showリンクが表示される' do
@@ -126,7 +126,7 @@ describe '投稿のテスト' do
   			visit book_path(book)
   			expect(page).to have_content book.title
   		end
-  		it '投稿のopinionが表示される' do
+  		it '投稿のbodyが表示される' do
   			visit book_path(book)
   			expect(page).to have_content book.body
   		end
