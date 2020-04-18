@@ -1,10 +1,13 @@
 class BooksController < ApplicationController
+	before_action :baria_user, only: [:update, :delete]
 
   def show
-  	@book = Book.find(params[:id])
+	  @book = Book.find(params[:id])
+	  @user = current_user
   end
 
   def index
+	@book = Book.new
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
   end
 
@@ -44,5 +47,12 @@ class BooksController < ApplicationController
   def book_params
   	params.require(:book).permit(:title)
   end
+
+    #url直接防止　メソッドを自己定義してbefore_actionで発動。
+	def baria_book
+		unless params[:user_id].to_i == current_user.id
+			redirect_to books_path
+		end
+	 end
 
 end
