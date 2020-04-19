@@ -78,3 +78,5 @@ gem "refile-mini_magick"
 
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'jquery-rails'
+
+gem "actionview", ">= 5.2.4.2"
