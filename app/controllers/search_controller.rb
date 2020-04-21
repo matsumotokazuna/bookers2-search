@@ -1,10 +1,12 @@
 class SearchController < ApplicationController
     def search
-        @search_target = params[:search_target]
-        if @search_target == "1"
-            @users = User.search(params[:search])
+        @word = params[:search_word]
+        @target = params[:search_target]
+        @method = params[:search_method]
+        if @target == "user"
+            @users = User.search(@word,@method)
         else
-            @books = Book.search(params[:search])
+            @books = Book.search(@word,@method)
         end
     end 
 end
