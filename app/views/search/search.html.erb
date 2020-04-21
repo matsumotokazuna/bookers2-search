@@ -1,6 +1,5 @@
-<%= render 'search/search' %>
+<h2>Search results</h2>
 <% if @search_target == "1" %>
-    <h2>Users</h2>
     <table class="table">
         <thead>
             <tr>
@@ -21,8 +20,7 @@
         </tbody>
     </table>
 <% else %>
-    <h2>Books</h2>
-    <table class="table table-hover table-inverse">
+    <table class="table">
         <thead>
             <tr>
                 <th></th>
